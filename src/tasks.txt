@@ -1,0 +1,60 @@
+Plan app and structure
+Set up
+  component folder
+    auth
+    dashboard 
+    layout
+    projects
+Create component templates
+  Navbar
+  Dashboard
+  Project
+  Login
+  Sign up
+  Project form
+
+Nav Links
+  Use NavLink and Route
+
+Add Redux and Reducers
+  Create store folder and within create the Reducers
+    rootReducer
+    authReducer
+    projectReducer
+  make init state projectReducer
+  combine reducers into rootReducer
+  createStore in the index.js and pass in rootReducer
+  MapStateToProps in the Dashboard and connect the component to the store
+  Pass the projects as props down into ProjectList component
+  Cycle through projects and output a summary for each one, pass in project and key
+
+Asynchronous code with Redux
+  Setup Redux Thunk (middleware) -lets you return function - used to halt the dispatch in the action creator, return an asynchronous function to communicate with the database
+    applyMiddleware to the store 
+  Create actions folder
+    projectActions
+      return function instead of object
+  Connect CreateProject to store
+  mapDispatchToProps
+    pass in dispatch method
+    return object createProject - adding property we want to add to props
+    call the dispatch action onSubmit passing in state
+  projectReducer receives dispatch action 
+    checks the action type (CREATE_PROJECT) 
+    logs the action.project /state property passed in 
+    
+Setup Firebase
+  create firebase project
+  config folder
+    set up fbConfig
+    copy config var
+    import firebase libraries
+    export
+  Plan collections and data
+  import get firebase and firestore
+  add to middleware
+    pass in config so know what to connect to
+  pass getFirebase and getFirestore into projectActions as destruct
+
+
+

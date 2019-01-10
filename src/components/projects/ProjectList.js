@@ -1,13 +1,16 @@
 import React from 'react';
 import ProjectSummary from './ProjectSummary'
 
-const ProjectList = () => {
+// grab projects property passed in as props
+const ProjectList = ({projects}) => {
     return (
         <div className="project-list section">
-            <ProjectSummary />
-            <ProjectSummary />
-            <ProjectSummary />
-            <ProjectSummary />
+            {/* if there are projects cycle through projects and output a summary for each one */}
+            { projects && projects.map(project => {
+                return (
+                    <ProjectSummary project={project} key={project.id}/>
+                )
+            })}
         </div>
     )
 }

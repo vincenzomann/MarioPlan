@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createProject } from '../../store/actions/projectActions';
 
 class CreateProject extends Component {
   state = {
@@ -14,7 +16,8 @@ class CreateProject extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.createProject(this.state);
   }
 
   render() {
@@ -31,7 +34,7 @@ class CreateProject extends Component {
 
           <div className="input-field">
             <label htmlFor="text">Project Content</label>
-            <textarea id="content" className="materialize-textarea"></textarea>
+            <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
           </div>
 
           <div className="input-field">
@@ -44,4 +47,13 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+// pass in dispatch method
+const mapDispatchToProps = (dispatch) => {
+  // return object createProject - adding property we want to add to props. Calling props.createProject will call this function - dispatch action creator passing in the project
+  return {
+    createProject: (project) => dispatch(createProject(project))
+  }
+}
+
+// connect component to store, first connect parameter usually mapStateToProps
+export default connect(null, mapDispatchToProps)(CreateProject);
