@@ -22,7 +22,7 @@ class CreateProject extends Component {
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
 
-          <h5 className="grey-text text-darken-3">Create Project</h5>
+          <h5 className="grey-text text-darken-3">Create New Project</h5>
 
           <div className="input-field">
             <label htmlFor="title">Title</label>
