@@ -56,5 +56,9 @@ Setup Firebase
     pass in config so know what to connect to
   pass getFirebase and getFirestore into projectActions as destruct
 
+Adding data to firestore
+  make reference to firestore in dispatch action
+
+
 
 
