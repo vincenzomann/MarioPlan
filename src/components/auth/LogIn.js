@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class CreateProject extends Component {
+class LogIn extends Component {
   state = {
-    title: '',
-    content: ''
+    email: '',
+    password: ''
   }
 
   handleChange = (e) => {
@@ -22,20 +22,20 @@ class CreateProject extends Component {
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
 
-          <h5 className="grey-text text-darken-3">Create Project</h5>
+          <h5 className="grey-text text-darken-3">Log In</h5>
 
           <div className="input-field">
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" onChange={this.handleChange}/>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" onChange={this.handleChange}/>
           </div>
 
           <div className="input-field">
-            <label htmlFor="text">Project Content</label>
-            <textarea id="content" className="materialize-textarea"></textarea>
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" onChange={this.handleChange}/>
           </div>
 
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
+            <button className="btn pink lighten-1 z-depth-0">Log In</button>
           </div>
 
         </form>
@@ -44,4 +44,4 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+export default LogIn;
