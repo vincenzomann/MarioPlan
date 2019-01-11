@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 class Dashboard extends Component{
     render(){
@@ -30,6 +32,7 @@ class Dashboard extends Component{
 
 // map state from the store and pass in as props so component can access it
 const mapStateToProps = (state) => {
+    console.log(state);
     // return object - represents which properties are attached to the props of this component
     return {
         projects: state.project.projects
@@ -37,4 +40,10 @@ const mapStateToProps = (state) => {
 }
 
 // connect component to the store state
-export default connect(mapStateToProps)(Dashboard);
+// connect component to firestore, telling what data to sync
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'projects' }
+    ])
+)(Dashboard);

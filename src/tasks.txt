@@ -58,7 +58,17 @@ Setup Firebase
 
 Adding data to firestore
   make reference to firestore in dispatch action
+  add project to firestore collection
+    pass in state properties
+    async .then to dispatch CREATE_PROJECT
+    async .catch to dispatch CREATE_PROJECT_ERROR
+  handle dispatch action in reducer switch statement
 
-
-
-
+Synching Data with Firestore
+  import firestoreReducer into rootReducer
+  apply firestoreReducer to firestore property
+    will automatically sync state property to the data in the database
+  connect component with firestore - firestoreConnect
+    tell it what data to put in the state from the component
+    apply as high order component to component using compose
+    firestoreConnect takes in array of the collections
