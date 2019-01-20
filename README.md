@@ -3,7 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Depenencies
 
 Node.js
-npm install react-router-dom redux react-redux redux-thunk firebase react-redux-firebase redux-firestore
+npm install react-router-dom redux react-redux redux-thunk firebase react-redux-firebase redux-firestore moment 
+npm install -g firebase-tools
 
 ## Available Scripts
 

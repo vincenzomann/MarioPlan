@@ -72,3 +72,135 @@ Synching Data with Firestore
     tell it what data to put in the state from the component
     apply as high order component to component using compose
     firestoreConnect takes in array of the collections
+    had to rollback 'react-redux' dependency in package.json from v6 to v5.1 $  npm i --save react-redux@^5.1.1
+
+
+Deploy app to firebase
+  cd into app
+  npm run build
+  npm install -g firebase-tools
+  firebase login
+  firebase init
+    proceed - yes
+    services - hosting (press scpace to select)
+    select the project
+    public directory - build
+    single page app - yes
+  firebase deploy
+  go to firebase website console
+    click on website
+
+Authentication
+  Enable authentication of firebase 
+  add firebase reducer to root reducer 
+  map state to props on nav bar to show firebase property
+  create auth action creator
+    sign in function  
+      initialise firebase
+      auth and sign in methods
+      pass in credentials
+      then dispatch on promise
+      catch error
+  create auth reducer
+    switch case for the action type success and error
+  dispatch login action from login component
+    import connect and login action
+    map dispatch to props
+      return dispatch login action
+      pass in credentials to dispatch action
+    connect login component
+    on handle submit call sign in action passing in state
+  map state to props on LogIn component to access state and return authError
+  create message on form for error
+  use destructuring to grab authError from props state
+  create sign out action creator
+  add action to switch case in auth reducer
+  dispatch action from navbar log out button
+    import connect and action creator
+    map dispatch to props
+    have to pass in props because it's a functional component not a class - then can use props.logout
+    use on click event to dispatch action
+
+Use UID of login to show the correct links 
+  pass props to Nav   
+  initialise auth
+  if uid property exists show signed in links
+  ensure user is authenticated before changing the DOM
+    add to firebase middleware auth ready is true
+    fire auth is ready function with the DOM render inside the then callback function
+  
+Route Guarding
+  map the auth state to props on dashboard
+  use destructuring to get auth from this.props
+  check if uid is logged in
+    if not redirect to login or sign up
+    import redirect
+  do same for other protected pages - create, details
+  route guard to preven a logged in user going to login or sign up
+
+Sign user up
+  create user action
+  pass in firestore and firebase to sync uid to document
+  create sign up action creator
+    generate new user
+    create new record
+  add actions to auth reducer
+  handle action on sign up and dispatch action to props
+  show auth error
+
+User profile data
+  sync profile object within firebase of state with document for user in firestore - use uid
+  useFirestoreForProfile and userProfile parameters in reactReduxFirebase middleware
+  can now access user from firebase.profile
+  pass profile as props
+  call props.profile.initials in signed in links
+  call props.profile.firstname in create project
+  update the posted by and date created
+  redirect user to '/' after creating project
+
+Format date
+  npm install moment 
+  import moment
+  pass the project.createdAt.toDate() into moment()
+  append whichever moment method on end for formatting e.g. calendar()
+
+Change security rules in firebase
+  databse rules tab
+
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /projects/{project} {
+        allow read, write: if request.auth.uid != null
+      }
+      match /users/{userId} {
+        allow create
+        allow read: if request.auth.uid != null
+        allow write: if request.auth.uid == userId
+      }
+    }
+  }
+
+Cloud functions - server side functions
+  setup on firebase, functions
+  npm install -g firebase-tools
+  firebase login
+  firebase init
+    proceed - yes
+    services - functions, hosting
+    function language - javascript
+    eslint - no
+    install dependencies - yes
+    public directory - build
+    single page app - yes
+  simple example:
+  uncomment helloworld from functions/index.js
+  firebase deploy --only functions
+  click on link
+
+  project example - real time notifications:
+  triggers: new project added or new user made 
+  
+
+
+
+
