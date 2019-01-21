@@ -199,7 +199,13 @@ Cloud functions - server side functions
 
   project example - real time notifications:
   triggers: new project added or new user made 
-  
+  create these cloud functions in functions/index.js
+    initialise and config firebase admin
+  create project created function
+  create Nofification function
+  redeploy 
+  firebase functions logs shows what triggered it and created notifications in database
+  create function to notify user when a new user is created
 
 
 
