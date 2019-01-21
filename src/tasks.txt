@@ -207,6 +207,10 @@ Cloud functions - server side functions
   firebase functions logs shows what triggered it and created notifications in database
   create function to notify user when a new user is created
 
+  grab notifications from store and map to component
+  change security rules for notification - read only if logged in
+  put project summaries and notifications in time order
+
 
 
 
